@@ -60,7 +60,7 @@
                 class="nav-link"
                 to="/register"
               >
-                Sign up515
+                Sign up666
               </nuxt-link>
             </li>
           </template>

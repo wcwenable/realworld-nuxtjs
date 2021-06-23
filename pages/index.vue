@@ -44,7 +44,7 @@
                 ><img src="http://i.imgur.com/N4VcUeJ.jpg"
               /></a>
               <div class="info">
-                <a href="" class="author">Albert Pai515</a>
+                <a href="" class="author">555Albert Pai</a>
                 <span class="date">January 20th</span>
               </div>
               <button class="btn btn-outline-primary btn-sm pull-xs-right">

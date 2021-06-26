@@ -47,8 +47,7 @@ import ArticleComments from './components/article-comments'
 export default {
   name: 'ArticleIndex',
   async asyncData ({ params }) {
-    const { data } = await getArticle(params.slug)
-    const { article } = data
+    const { article } = await getArticle(params.slug)
     const md = new MarkdownIt()
     article.body = md.render(article.body)
     return {
@@ -66,7 +65,9 @@ export default {
         { hid: 'description', name: 'description', content: this.article.description }
       ]
     }
-  }
+  },
+  methods: {
+  },
 }
 </script>
 

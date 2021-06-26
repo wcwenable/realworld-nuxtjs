@@ -28,9 +28,31 @@ export default ({ store }) => {
 
     // 返回 config 请求配置对象
     return config
-  }, function (error) {
+  }, async function (error) {
     // 如果请求失败(此时请求还没有发出去)就会进入这里
     // Do something with request error
     return Promise.reject(error)
+  })
+
+  
+// response interceptor
+request.interceptors.response.use(
+  /**
+   * If you want to get http information such as headers or status
+   * Please return  response => response
+  */
+
+  /**
+   * Determine the request status by custom errcode
+   * Here is just an example
+   * You can also judge the status by HTTP Status errcode
+   */
+  response => {
+    console.log('response515', response)
+    return Promise.resolve(response.data)
+  }, 
+  error => {
+    // console.dir(error, '515err');
+    return Promise.reject(error.response.data)
   })
 }

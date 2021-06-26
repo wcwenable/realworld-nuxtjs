@@ -18,3 +18,37 @@ export const register = data => {
     data
   })
 }
+
+// 更新用户信息
+export const updateUser = data => {
+  return request({
+    method: 'PUT',
+    url: '/api/user',
+    data
+  })
+}
+
+
+// 用户Profile
+export const getProfile = username => {
+  return request({
+    method: 'GET',
+    url: `/api/profiles/${username}`
+  })
+}
+
+// 跟随user
+export const followUser = username => {
+  return request({
+    method: 'POST',
+    url: `/api/profiles/${username}/follow`
+  })
+}
+
+// 取消跟随user
+export const unfollowUser = username => {
+  return request({
+    method: 'DELETE',
+    url: `/api/profiles/${username}/follow`
+  })
+}

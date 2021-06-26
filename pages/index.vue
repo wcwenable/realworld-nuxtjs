@@ -2,8 +2,8 @@
   <div class="home-page">
     <div class="banner">
       <div class="container">
-        <h1 class="logo-font">conduit</h1>
-        <p>A place to share your knowledge.</p>
+        <h1 class="logo-font">conduit-导管</h1>
+        <p>A place to share your knowledge.-共享知识之地</p>
       </div>
     </div>
     <div class="container page">
@@ -12,10 +12,10 @@
           <div class="feed-toggle">
             <ul class="nav nav-pills outline-active">
               <li class="nav-item">
-                <a class="nav-link disabled" href="">Your Feed</a>
+                <a class="nav-link disabled" href="">Your Feed-你之味</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link active" href="">Global Feed</a>
+                <a class="nav-link active" href="">Global Feed-全球之味</a>
               </li>
             </ul>
           </div>

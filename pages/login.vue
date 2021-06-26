@@ -11,27 +11,35 @@
             <nuxt-link v-else to="/login">Have an account?</nuxt-link>
           </p>
           <ul class="error-messages">
-            <li>That email is invalid.</li>
+            <li v-for="msg in Object.keys(errorMsgs)" :key="msg">
+              {{ msg }}: {{ errorMsgs[msg].join('、')}}
+            </li>
           </ul>
-          <form>
+          <form @submit.prevent="handleFormSubmit">
             <fieldset v-if="!isLogin" class="form-group">
               <input
+                v-model="user.username"
                 class="form-control form-control-lg"
                 type="text"
+                required
                 placeholder="Your Name"
               />
             </fieldset>
             <fieldset class="form-group">
               <input
+                v-model="user.email"
                 class="form-control form-control-lg"
                 type="email"
+                required
                 placeholder="Email"
               />
             </fieldset>
             <fieldset class="form-group">
               <input
+                v-model="user.password"
                 class="form-control form-control-lg"
                 type="password"
+                required
                 placeholder="Password"
               />
             </fieldset>
@@ -45,17 +53,55 @@
   </div>
 </template>
 <script>
+import { login, register } from '@/api/user'
+
+// 仅在客户端加载 js-cookie 包
+const Cookie = process.client ? require('js-cookie') : undefined
 export default {
   name: "LoginIndex",
-  asyncData() {},
+  async asyncData() {
+  },
+  middleware: 'notAuthenticated',
   data() {
-    return {};
+    return {
+      user: {
+        username: '',
+        password: '',
+        email: '',
+      },
+      errorMsgs: {}
+    };
   },
   computed: {
     isLogin() {
       return this.$route.path === "/login";
     },
   },
+  methods: {
+    // 提交 处理
+    async handleFormSubmit () {
+      try {        
+        const { email, password } = this.user
+        const data = this.isLogin ? await login({
+          user: { email, password }
+        }) : await register({
+          user: this.user
+        })
+        console.log(data);
+        this.$store.commit('setUser', data.user)
+
+        // 为了防止刷新页面数据丢失，我们需要把数据持久化
+        Cookie.set('user', data.user)
+        
+        this.$router.push('/')
+      } catch (error) {
+        console.log(error, 'err515');
+        const { errors } = error || {}
+        this.errorMsgs = errors
+      }
+      
+    }
+  }
 };
 </script>
 <style>

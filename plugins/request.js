@@ -49,7 +49,7 @@ request.interceptors.response.use(
    */
   response => {
     console.log('response515', response)
-    return Promise.resolve(response.data)
+    return Promise.resolve(response && response.data)
   }, 
   error => {
     // console.dir(error, '515err');

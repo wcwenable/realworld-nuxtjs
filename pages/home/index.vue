@@ -128,8 +128,8 @@ export default {
       getTags()
     ])
 
-    const { articles, articlesCount } = articleRes
-    let { tags } = tagRes
+    const { articles = [], articlesCount = 0 } = articleRes
+    let { tags = [] } = tagRes
     let xx = decodeURI ('%E2%80%8C')
     let reg =RegExp(xx,'g')
     tags = tags.map(item=>item. replace(reg, '')).filter(item=> !!item)

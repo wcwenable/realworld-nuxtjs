@@ -29,6 +29,10 @@
                 </button>
             </fieldset>
           </form>
+          <hr>
+          <button class="btn btn-outline-danger" @click="handleLoginOutClick">
+          Or click here to logout.
+          </button>
         </div>
 
       </div>
@@ -68,6 +72,15 @@ export default {
       Cookie.set('user', user)
 
       this.$router.push(`/profile/${user.username}`)
+    },
+    handleLoginOutClick () {     
+      
+      this.$store.commit('setUser', null)
+
+      // 为了防止刷新页面数据丢失，我们需要把数据持久化
+      Cookie.set('user', null)
+
+      this.$router.push(`/login`)
     }
   },
 }
